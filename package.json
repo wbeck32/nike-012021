@@ -1,0 +1,12 @@
+{
+  "name": "nike-012021",
+  "version": "1.0.0",
+  "description": "Coding challenge",
+  "main": "shiny.js",
+  "scripts": {
+		"test": "echo \"Error: no test specified\" && exit 1",
+		"start": "node shiny.js"
+  },
+  "author": "Wendy Beck",
+  "license": "ISC"
+}
