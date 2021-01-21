@@ -44,20 +44,7 @@ console.log('moneyIn + e:', moneyIn);
 	const handleListItemClick = async (e,idx) =>{
 		setSelectedIndex(idx)
 	}
-	
-	// const handleCancel = e => {
-	// 	console.log('e:', e);
-	// 	const updateBill = moneyObj[e]=moneyObj[e]+1
-	// 	console.log('updateBill:', updateBill);
-	// 	updateMoneyObj({...moneyObj,...updateBill})
-	// 	console.log('moneyObj:', moneyObj);
-		
-	// 	// Object.keys(moneyObj).map(m=>{
-	// 	// 	console.log('m,i:', Number(m),moneyObj[Number(m)]);
-			
-			
-	// 	// })		
-	// }
+	// TODO: add reset button
 	const handleMoneyBack = e => {
 		console.log('e:', e);
 		setCaption('reset')

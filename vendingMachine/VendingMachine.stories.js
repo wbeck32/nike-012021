@@ -1,5 +1,5 @@
 import React from 'react';
-import VendingMachine from '../VendingMachine'
+import VendingMachine from './VendingMachine'
 
 export default {
 	title:'VendingMachine',
