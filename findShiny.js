@@ -1,12 +1,10 @@
 const compare = (element,index,array) =>{
-	// console.log('element,index,array:', element,index,array);
 	let comp = true
 	array.filter((idx)=>{
 		if(array[idx+1] !== undefined && comp !==false) comp = array[idx]<=array[idx+1];
 	})	
 	return comp
 }
-
 
 const findShiny = (num) =>{
 	let numArray = [];
@@ -22,7 +20,6 @@ const findShiny = (num) =>{
 	console.log('=============')
 	return numArray
 }
-
 
 console.log('findShiny(123):', findShiny(123));
 // findShiny(499)
