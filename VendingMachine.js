@@ -8,7 +8,7 @@
 // Allow user to be refunded by canceling the request.
 // Based on the selected product, return remaining change if any
 // Just document your approach. There is no need for detailed design diagrams.
-import {Button,ListItem,ListItemText} from '@material-ui/core' 
+import {Accordion,Button,ListItem,ListItemText,Card,Container,Input} from '@material-ui/core' 
 import React,{useState} from 'react'
 
 const VendingMachine = () =>{
@@ -26,13 +26,17 @@ const VendingMachine = () =>{
 		5:0,
 		1:0
 	}
-
+	
 	const [moneyIn,setMoneyIn] = useState(0)
 	const [moneyObj,updateMoneyObj] = useState(bills)
 	const [selectedIndex, setSelectedIndex] = useState();
+	const [expanded,setExpanded] = useState(false)
+	const [caption,setCaption] = useState('Insert some money')
 	
-	const handleClick = e =>{
-		e === 0 ? setMoneyIn(0) : setMoneyIn(moneyIn + e)
+	const handleClick = async e =>{
+await setMoneyIn(moneyIn + e)
+console.log('moneyIn + e:', moneyIn);
+		await setCaption(`You've inserted: `)
 		const updateBill = moneyObj[e]=moneyObj[e]+1
 		updateMoneyObj({...moneyObj,...updateBill})
 	}	
@@ -41,15 +45,26 @@ const VendingMachine = () =>{
 		setSelectedIndex(idx)
 	}
 	
-	const handleCancel = e => {
-		console.log('moneyObj:', moneyObj);
-		Object.keys(moneyObj).map(m=>{
-			console.log('m,i:', Number(m),moneyObj[Number(m)]);
-
-
-		})		
-	}
+	// const handleCancel = e => {
+	// 	console.log('e:', e);
+	// 	const updateBill = moneyObj[e]=moneyObj[e]+1
+	// 	console.log('updateBill:', updateBill);
+	// 	updateMoneyObj({...moneyObj,...updateBill})
+	// 	console.log('moneyObj:', moneyObj);
+		
+	// 	// Object.keys(moneyObj).map(m=>{
+	// 	// 	console.log('m,i:', Number(m),moneyObj[Number(m)]);
+			
+			
+	// 	// })		
+	// }
 	const handleMoneyBack = e => {
+		console.log('e:', e);
+		setCaption('reset')
+		console.log('products[selectedIndex]:', products[selectedIndex]);
+		if(e==='cancel') setCaption('Your refund amount:')
+		if(products[selectedIndex]) {
+			setCaption('nothing selected')
 		const {price,name} = products[selectedIndex]
 		console.log('price:', price);
 		let change = moneyIn - price
@@ -72,11 +87,25 @@ const VendingMachine = () =>{
 		
 		moneyObj[1] = change !==0 ? Math.trunc(change/1):0
 		change = change - (moneyObj[1]*1)
+	}
+	setCaption('your change is')
 		console.log('moneyObj:', moneyObj);		
 	}
+
+	const MoneyList = props =>{
+		const {values} = props
+		const mL = Object.keys(values).map(o=>{
+			return <div>${Number(o)} : {moneyObj[Number(o)]}</div>
+		})
+
+return mL
+	}
+	
 	
 	return (
-		<div style={{width:500,height:500}}>
+		<>
+		<Container>
+		<Card>
 		<div>
 		Insert payment:
 		<Button variant="contained" onClick={(v=>handleClick(1))} color="primary">$1</Button>
@@ -85,23 +114,34 @@ const VendingMachine = () =>{
 		<Button variant="contained"  onClick={(v=>handleClick(25))} color="secondary">$25</Button>
 		<Button variant="contained"  onClick={(v=>handleClick(50))} color="secondary">$50</Button>
 		<Button variant="contained"  onClick={(v=>handleClick(100))} color="secondary">$100</Button>
-		<div>{moneyIn}</div>
 		</div>
+		<Accordion expanded={expanded}>
+		<div>{products.length > 0 && 
+			products.map((n,idx)=>{
+				if(n.price <= moneyIn){
+					return( 
+						<ListItem key={idx} selected={selectedIndex===idx} button={true} onClick={(event) => handleListItemClick(event, idx)}>
+						<ListItemText>{n.name} - ${n.price}</ListItemText>
+						</ListItem>
+						)
+					} 
+				})
+			}
+			</div>
+			</Accordion>
+			<Button variant="contained"  onClick={e=>handleMoneyBack('purchase')} color="secondary">Purchase</Button>
+			<Button variant="contained" onClick={e=>handleMoneyBack('cancel')} color="secondary">Cancel</Button>
+			</Card>
+			<Card>
+			{caption}
+			{moneyObj &&
+			<MoneyList key="1" values={moneyObj}/>
+				
+			}
+			</Card>
+			</Container>
+			</>
+			)
+		}
 		
-		<div>Available Options</div>
-		<div>Select one</div>
-		<div>{products.length > 0 && products.map((n,idx)=>{
-			return n.price <= moneyIn 
-			? <ListItem key={idx} selected={selectedIndex===idx} button={true} onClick={(event) => handleListItemClick(event, idx)}>
-			<ListItemText>{n.name} - ${n.price}</ListItemText>
-			</ListItem>
-			: <div></div>
-		})}</div>
-		<Button variant="contained" onClick={handleCancel} color="secondary">Cancel</Button>
-		<Button variant="contained"  onClick={handleMoneyBack} color="secondary">Purchase</Button>
-		
-		</div>		
-		)
-	}
-	
-	export default VendingMachine
+		export default VendingMachine
