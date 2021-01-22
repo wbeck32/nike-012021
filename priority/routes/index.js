@@ -1,9 +1,21 @@
 var express = require('express');
 var router = express.Router();
+const {initializeProducts} = require('../utils/localStorage')
 
-/* GET home page. */
+let products = [
+	{
+		style:'style',
+		color:'color',
+		size:'size',
+		priority:0
+	}
+]
+
+// Initialize database if it does not exist
+// GET homepage
 router.get('/', function(req, res, next) {
-  res.render('index', { title: 'Manage product priorities' });
+	// initializeProducts(products)
+	res.render('index', { title: 'Manage product priorities' });
 });
 
 module.exports = router;

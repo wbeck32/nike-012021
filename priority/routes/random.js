@@ -1,9 +1,9 @@
 var express = require('express');
 var router = express.Router();
 
-/* GET users listing. */
+// randomize products
 router.get('/', function(req, res, next) {
-  res.send('users');
+  res.send('random');
 });
 
 module.exports = router;
