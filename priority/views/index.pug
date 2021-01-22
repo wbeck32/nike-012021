@@ -13,3 +13,7 @@ block content
 		a(href='/change') Change product priorities
 	p
 		a(href='/random') Randomize priorities
+	ul
+		if data
+			each val, key in data
+				li= key + ': ' + val

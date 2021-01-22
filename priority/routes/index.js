@@ -14,8 +14,8 @@ let products = [
 // Initialize database if it does not exist
 // GET homepage
 router.get('/', function(req, res, next) {
-	// initializeProducts(products)
-	res.render('index', { title: 'Manage product priorities' });
+	initializeProducts(products)
+	res.render('index', { title: 'Manage product priorities',data:null });
 });
 
 module.exports = router;
