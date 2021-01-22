@@ -4,8 +4,8 @@
   "description": "Coding challenge",
   "main": "shiny.js",
   "scripts": {
-    "test": "jest",
-    "start": "node findShiny.js",
+		"test":"jest",
+    "shiny": "node findShiny.js",
     "storybook": "start-storybook -p 6006",
     "build-storybook": "build-storybook"
   },
@@ -20,7 +20,8 @@
     "@storybook/react": "^6.1.14",
     "babel-jest": "^26.6.3",
     "babel-loader": "^8.2.2",
-    "jest": "^26.6.3"
+    "jest": "^26.6.3",
+    "jest-cli": "^26.6.3"
   },
   "jest": {
     "transform": {}
