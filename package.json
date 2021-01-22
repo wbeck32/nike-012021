@@ -6,7 +6,7 @@
   "scripts": {
 		"test":"jest",
     "shiny": "node findShiny.js",
-    "storybook": "start-storybook -p 6006",
+    "vending": "start-storybook -p 6006",
     "build-storybook": "build-storybook"
   },
   "author": "Wendy Beck",

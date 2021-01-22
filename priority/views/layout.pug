@@ -4,4 +4,22 @@ html
 		title= title
 		link(rel='stylesheet', href='/stylesheets/style.css')
 	body
+	div(class='leftColumn')
+		h2 Menu
+		p
+		a(class='topic' href='/') Home
+		p(class='topic') Microservice
+		p
+			a(class='subtopic' href='/list') List products
+		p
+			a(class='subtopic' href='/replace') Replace a product
+		p
+			a(class='subtopic' href='/change') Change product priorities
+		p
+			a(class='subtopic' href='/random') Randomize priorities
+		p
+			a(class='topic', href='/vending') Vending Machine
+		p
+			a(class='topic', href='/shiny') Shiny Numbers
+	div(class='rightColumn')
 		block content		
