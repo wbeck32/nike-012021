@@ -1,8 +1,8 @@
 
 const compare = (element,index,array) =>{
 	let comp = true
-	array.filter((idx)=>{
-		if(array[idx+1] !== undefined && comp !==false) comp = array[idx]<=array[idx+1];
+	array.filter((item,idx)=>{
+		if(array[idx+1] !== undefined) comp = array[idx]<=array[idx+1];
 	})	
 	return comp
 }

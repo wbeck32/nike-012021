@@ -1,9 +1,11 @@
 var express = require('express');
 var router = express.Router();
 
-// randomize products
+// Retrieve the products
+// Randomize products
+// Update products in database
 router.get('/', function(req, res, next) {
-	res.render('index', { topicTitle: 'Randomize products',data:{1:'one',2:'two'}});
+	res.render('index', { topicTitle: 'Randomize products'});
 
 });
 

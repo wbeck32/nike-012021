@@ -2,6 +2,8 @@ extends layout
 
 block content
 	h1= topicTitle
+	if text
+		p= text
 	if data
 		ul
 			each val, key in data

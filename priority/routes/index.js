@@ -15,7 +15,7 @@ let products = [
 // GET homepage
 router.get('/', function(req, res, next) {
 	initializeProducts(products)
-	res.render('index', { title: 'Manage product priorities',data:null });
+	res.render('index', { title: 'Manage product priorities',text:'Choose an option from the menu',data:null });
 });
 
 module.exports = router;

@@ -18,7 +18,8 @@ const VendingMachine = () =>{
 		{price:125,name: 'Air Max Plus'},
 		{price:150,name: 'Air Max 270'},
 		{price:150,name: 'Epic React Flyknit'},
-		{price:350,name: 'My Shoe'},
+		{price:190,name: 'Air VaporMax Flyknit'},
+		{price:85,name: 'Stefan Janowski'},
 	]
 	let bills = {
 		100:0,
@@ -52,8 +53,8 @@ const VendingMachine = () =>{
 		setCaption('reset')
 		console.log('products[selectedIndex]:', products[selectedIndex]);
 		if(e==='cancel') setCaption('Your refund amount:')
-		if(products[selectedIndex]) {
-			setCaption('nothing selected')
+		if(products[selectedIndex] === undefined) setCaption('nothing selected')
+		else if(products[selectedIndex]) {
 			const {price,name} = products[selectedIndex]
 			console.log('price:', price);
 			let change = moneyIn - price
@@ -76,9 +77,8 @@ const VendingMachine = () =>{
 			
 			moneyObj[1] = change !==0 ? Math.trunc(change/1):0
 			change = change - (moneyObj[1]*1)
+			setCaption('your change is')
 		}
-		setCaption('your change is')
-		console.log('moneyObj:', moneyObj);		
 	}
 	
 	const MoneyList = props =>{
@@ -86,7 +86,6 @@ const VendingMachine = () =>{
 		const mL = Object.keys(values).map(o=>{
 			return <div>${Number(o)} : {moneyObj[Number(o)]}</div>
 		})
-		
 		return mL
 	}
 	
@@ -94,6 +93,11 @@ const VendingMachine = () =>{
 	return (
 		<>
 		<Container>
+		<p>Press the money buttons until a list of available shoes appears.</p>
+		<p>Click the shoe you'd like to purchase and press purchase.</p>
+		<p>The cancel button will cancel your purchase.</p>
+		<p>I didn't have time to finish the UI but the functionality seems to be correct.</p>
+
 		<Card>
 		<div>
 		Insert payment:
@@ -125,7 +129,6 @@ const VendingMachine = () =>{
 			{caption}
 			{moneyObj &&
 				<MoneyList key="1" values={moneyObj}/>
-				
 			}
 			</Card>
 			</Container>
@@ -134,4 +137,4 @@ const VendingMachine = () =>{
 		}
 		render(<VendingMachine />, document.getElementById("root"));
 		
-		// export default VendingMachine
+		export default VendingMachine

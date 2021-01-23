@@ -1,9 +1,11 @@
 var express = require('express');
 var router = express.Router();
 
-/* GET users listing. */
+// Retrieve the products
+// Randomize the list
+// Update products in database
 router.get('/', function(req, res, next) {
-	res.render('index', { topicTitle: 'Replace products',data:{1:'one',2:'two'}});
+	res.render('index', { topicTitle: 'Replace products'});
 
 });
 

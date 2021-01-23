@@ -4,7 +4,7 @@ const findShiny = require('../public/javascripts/findShiny')
 
 // Load shiny page
 router.get('/', function(req, res, next) {
-	res.render('index', { topicTitle: 'Shiny Numbers',shiny:'shiny',shinyArray:[]});
+	res.render('index', { topicTitle: 'Shiny Numbers',shiny:'shiny',shinyArray:[],text:'You can also run tests on this function with npm run test.'});
 });
 
 // Generate shiny array
