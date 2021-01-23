@@ -1,4 +1,6 @@
-nike-012021
+``npm start``
+
+More comments in the routes files
 
 ### TODOS
 - More tests!
