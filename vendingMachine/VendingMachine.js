@@ -10,6 +10,8 @@
 // Just document your approach. There is no need for detailed design diagrams.
 import {Accordion,Button,ListItem,ListItemText,Card,Container,Input} from '@material-ui/core' 
 import React,{useState} from 'react'
+import { render } from "react-dom";
+
 
 const VendingMachine = () =>{
 	const products = [
@@ -34,8 +36,8 @@ const VendingMachine = () =>{
 	const [caption,setCaption] = useState('Insert some money')
 	
 	const handleClick = async e =>{
-await setMoneyIn(moneyIn + e)
-console.log('moneyIn + e:', moneyIn);
+		await setMoneyIn(moneyIn + e)
+		console.log('moneyIn + e:', moneyIn);
 		await setCaption(`You've inserted: `)
 		const updateBill = moneyObj[e]=moneyObj[e]+1
 		updateMoneyObj({...moneyObj,...updateBill})
@@ -52,40 +54,40 @@ console.log('moneyIn + e:', moneyIn);
 		if(e==='cancel') setCaption('Your refund amount:')
 		if(products[selectedIndex]) {
 			setCaption('nothing selected')
-		const {price,name} = products[selectedIndex]
-		console.log('price:', price);
-		let change = moneyIn - price
-		console.log('change:', change);
-		
-		moneyObj[100]=change !== 0 ? Math.trunc(change/100):0,
-		change = change - (moneyObj[100]*100)
-		
-		moneyObj[50]=change !== 0 ?Math.trunc((change/50)):0,
-		change = change - (moneyObj[50]*50)
-		
-		moneyObj[25]=change !== 0 ?Math.trunc((change/25)):0
-		change = change - (moneyObj[25]*25)
-		
-		moneyObj[10] = change !==0 ? Math.trunc(change/10):0
-		change = change - (moneyObj[10]*10)
-		
-		moneyObj[5] = change !==0 ? Math.trunc(change/5):0
-		change = change - (moneyObj[5]*5)
-		
-		moneyObj[1] = change !==0 ? Math.trunc(change/1):0
-		change = change - (moneyObj[1]*1)
-	}
-	setCaption('your change is')
+			const {price,name} = products[selectedIndex]
+			console.log('price:', price);
+			let change = moneyIn - price
+			console.log('change:', change);
+			
+			moneyObj[100]=change !== 0 ? Math.trunc(change/100):0,
+			change = change - (moneyObj[100]*100)
+			
+			moneyObj[50]=change !== 0 ?Math.trunc((change/50)):0,
+			change = change - (moneyObj[50]*50)
+			
+			moneyObj[25]=change !== 0 ?Math.trunc((change/25)):0
+			change = change - (moneyObj[25]*25)
+			
+			moneyObj[10] = change !==0 ? Math.trunc(change/10):0
+			change = change - (moneyObj[10]*10)
+			
+			moneyObj[5] = change !==0 ? Math.trunc(change/5):0
+			change = change - (moneyObj[5]*5)
+			
+			moneyObj[1] = change !==0 ? Math.trunc(change/1):0
+			change = change - (moneyObj[1]*1)
+		}
+		setCaption('your change is')
 		console.log('moneyObj:', moneyObj);		
 	}
-
+	
 	const MoneyList = props =>{
 		const {values} = props
 		const mL = Object.keys(values).map(o=>{
 			return <div>${Number(o)} : {moneyObj[Number(o)]}</div>
 		})
-
-return mL
+		
+		return mL
 	}
 	
 	
@@ -122,7 +124,7 @@ return mL
 			<Card>
 			{caption}
 			{moneyObj &&
-			<MoneyList key="1" values={moneyObj}/>
+				<MoneyList key="1" values={moneyObj}/>
 				
 			}
 			</Card>
@@ -130,5 +132,6 @@ return mL
 			</>
 			)
 		}
+		render(<VendingMachine />, document.getElementById("root"));
 		
-		export default VendingMachine
+		// export default VendingMachine

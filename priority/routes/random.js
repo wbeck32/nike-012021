@@ -3,7 +3,8 @@ var router = express.Router();
 
 // randomize products
 router.get('/', function(req, res, next) {
-  res.send('random');
+	res.render('index', { topicTitle: 'Randomize products',data:{1:'one',2:'two'}});
+
 });
 
 module.exports = router;

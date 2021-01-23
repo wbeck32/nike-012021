@@ -7,4 +7,9 @@ block content
 			each val, key in data
 				li= key + ': ' + val
 	if shiny
-		p shiny
+		form(action='/shiny' method='POST')
+			input(type='text' name='num' label='Find the next 100 shiny numbers starting from:') 
+			input(type='submit' value='Generate shiny array')
+		ul
+			each val in shinyArray
+				li= val

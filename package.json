@@ -5,7 +5,7 @@
   "main": "shiny.js",
   "scripts": {
 		"test":"jest",
-    "shiny": "node findShiny.js",
+    "shiny": "node ./shiny/findShiny.test.js",
     "vending": "start-storybook -p 6006",
     "build-storybook": "build-storybook"
   },

@@ -10,7 +10,7 @@ router.use(function timeLog (req, res, next) {
 router.get('/', function(req, res,next) {
 	const tmp = retrieveProducts()
 	console.log('tmp:', tmp);
-	res.render('index', { title: 'List products',data:{1:'one',2:'two'}});
+	res.render('index', { topicTitle: 'List products',data:{1:'one',2:'two'}});
 
 
 	// console.log('res:', res);

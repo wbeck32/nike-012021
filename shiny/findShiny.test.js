@@ -1,8 +1,8 @@
 
 const compare = (element,index,array) =>{
-	let comp = true
-	array.filter((idx)=>{
-		if(array[idx+1] !== undefined && comp !==false) comp = array[idx]<=array[idx+1];
+	let comp = true;
+	array.filter((item,idx)=>{
+		if(array[idx+1] !== undefined) comp = array[idx]<=array[idx+1];
 	})	
 	return comp
 }
@@ -26,27 +26,45 @@ beforeEach(() =>{
 	shinyArray = []
 })
 
-test('499',()=>{
+test('shiny => 499',()=>{
 	shinyArray = findShiny(499)
 	expect(shinyArray).toHaveLength(100)
 	expect(shinyArray[0]).toBe(499)
-	expect(shinyArray[99]).toBe(635)
 
 })
 
-// // findShiny(499)
-// console.log('findShiny(499):', findShiny(499));
-// // findShiny(111)
-// console.log('findShiny(111):', findShiny(111));
-// // findShiny(0)
-// // console.log('findShiny(0):', findShiny(0));
-// // findShiny(246888)
-// console.log('findShiny(246888):', findShiny(246888));
+test('shiny => 111',()=>{
+	shinyArray = findShiny(111)
+	expect(shinyArray).toHaveLength(100)
+	expect(shinyArray[0]).toBe(111)
+})
 
-// // findShiny(1231)
-// console.log('findShiny(1431):', findShiny(1431));
-// // findShiny(21)
-// console.log('findShiny(21):', findShiny(21));
-// // findShiny(63)
-// console.log('findShiny(63):', findShiny(63));
+test('shiny => 0',()=>{
+	shinyArray = findShiny(0)
+	expect(shinyArray).toHaveLength(100)
+	expect(shinyArray[0]).toBe(0)
+})
 
+test('shiny => 246888',()=>{
+	shinyArray = findShiny(24688)
+	expect(shinyArray).toHaveLength(100)
+	expect(shinyArray[0]).toBe(24688)
+})
+
+test('notShiny => 1231',()=>{
+	shinyArray = findShiny(1231)
+	expect(shinyArray).toHaveLength(100)
+	expect(shinyArray[0]).not.toBe(1231)
+})
+
+test('notShiny => 21',()=>{
+	shinyArray = findShiny(21)
+	expect(shinyArray).toHaveLength(100)
+	expect(shinyArray[0]).not.toBe(21)
+})
+
+test('notShiny => 63',()=>{
+	shinyArray = findShiny(63)
+	expect(shinyArray).toHaveLength(100)
+	expect(shinyArray[0]).not.toBe(63)
+})
